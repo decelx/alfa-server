@@ -50,6 +50,9 @@ def checkUser():
         users = cur.fetchall()
         conn.close()
 
+
+        print('hel')
+
         if user == users[0][2] and password == users[0][1]:
             return Response('done', status=200)
         else:
