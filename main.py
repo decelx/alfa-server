@@ -44,8 +44,6 @@ def checkUser():
         user = request.json['email']
         password = request.json['password']
 
-        print('hello')
-
         conn = connect()
         cur = conn.cursor()
         cur.execute('SELECT * FROM users;')
