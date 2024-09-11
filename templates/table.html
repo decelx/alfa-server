@@ -20,19 +20,27 @@
                 <th scope="col">id</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-                <th scope="row">1</th>
-                    <td>фвфв</td>
-                    <td>цфвфцвфа</td>
-                    <td>фцвфцвфц</td>
-                    <td>пасп</td>
-                    <td>1341231</td>
-            </tr>
+          <tbody id="table">
 
           </tbody>
         </table>
     </div>
 
 </body>
+    <script>
+        $(document).ready(function (){
+            $.ajax({
+                type: "POST",
+                url: "/gen_table",
+                contentType: "application/json",
+                data: JSON.stringify({"data": "data"}),
+                success: function (data) {
+                    $("#table").after(data);
+                },
+                error: function () {
+                    alert("no");
+                }
+            });
+        })
+    </script>
 </html>
