@@ -109,9 +109,42 @@ def checkUserAlfa():
 def test3():
     return render_template('user.html')
 
+@app.route('/gen_table', methods = ["POST"])
+def gen_table():
+    try:
+        conn = connect()
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM public.reference")
+        referenses = cur.fetchall()
+        conn.close()
+
+        print(referenses)
+
+        count = 1
+        table_html = ""
+        for ref in referenses:
+            tr = f"""
+                <tr>
+                    <th scope="row">{count}</th>
+                    <td>{ref[0]}</td>
+                    <td>{ref[1]}</td>
+                    <td>{ref[2]}</td>
+                    <td>{ref[3]}</td>
+                    <td>Кнопка</td>
+                </tr>
+            """
+            table_html += tr
+            count += 1
+        return Response(table_html, status=200)
+    except Exception as error:
+        print(error)
+        return Response('fail', status=404)
+
 @app.route('/table')
 def table():
     return render_template('table.html')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
