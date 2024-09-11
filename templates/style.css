@@ -1,0 +1,52 @@
+header {
+    background: linear-gradient(#fe8e8e, #fb2020);
+    padding: 5px;
+    border-radius: 10px;
+}
+.i {
+    padding-left: 333px;
+}
+.butSt {
+  background-color: rgba(255, 0, 0, 1);
+  color: #fff;
+  padding: 50px 100px;
+  border: 0;
+  margin-top: 5%;
+  margin-left: 5%;
+  font-size: 1rem;
+  border-radius: 7px;
+  height: 50%;
+  width: 80%;
+  text-align: middle;
+}
+.butSt:active {
+  box-shadow:
+    inset -2px -2px 3px rgba(255, 255, 255, 0.6),
+    inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+
+}
+
+body {
+    background-image: url("a.webp");
+    background-repeat: no-repeat;
+
+    height: 100%;
+    width: 100%;
+
+.sel {
+    position: absolute;
+    top: 55%;
+    left: 70%;
+    width: 500px;
+
+
+}
+
+.btn-group {
+    position: absolute;
+    top: 55%;
+    left: 4%;
+    width: 500px;
+
+}
+

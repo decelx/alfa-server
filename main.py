@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
+
+
 from flask import Flask, render_template
 from flask import request
 import psycopg2
 from config import load_config
 from flask import Response
 from urllib.parse import urlparse
+from uuid import *
 
 # conStr = "localhost://postgres:password@data_quality:5432"
 # p = urlparse(conStr)
@@ -35,41 +38,80 @@ def connect():
 @app.route('/')
 def hello():
     config = load_config('postgresql_db')
-    return render_template('index.html')
+    return render_template('patternA.html')
 
 
-@app.route('/check-user-data', methods=['POST'])
+@app.route('/index', methods=['POST'])
 def checkUser():
     if request.method == 'POST':
-        user = request.json['email']
-        password = request.json['password']
+        surname = request.json['surname']
+        name = request.json['name']
+        father = request.json['father']
+        docsType = request.json['docsType']
 
-        conn = connect()
-        cur = conn.cursor()
-        cur.execute('SELECT * FROM users;')
-        users = cur.fetchall()
-        conn.close()
+        id = uuid4()
 
-
-        print('hel')
-
-        if user == users[0][2] and password == users[0][1]:
+        
+        try:
+            conn = connect()
+            cur = conn.cursor()
+            cur.execute(f"INSERT INTO public.reference(surname, name, father, id, docstype) VALUES ('{surname}', '{name}', '{father}', '{id}', '{docsType}');")
+            conn.commit()
+            conn.close()
             return Response('done', status=200)
-        else:
+        except Exception as error:
+            print(error)
             return Response('fail', status=404)
 
 
-@app.route('/test')
-def test():
-    return render_template('butn.html')
+        #
+        # try:
+        #     if user == users[0][2] and password == users[0][1]:
+        #         return Response('done', status=200)
+        #     else:
+        #
+        # except Exception as error:
+        #     print(error)
 
 
-@app.route('/testtt')
+# @app.route('/main')
+# def test():
+#     return render_template('patternA.html')
+
+
+@app.route('/application')
 def test2():
-    return render_template('test.html')
+    return render_template('application.html')
 
 
 
+@app.route('/autorize', methods=['POST'])
+def checkUserAlfa():
+    if request.method == 'POST':
+        name = request.json['name']
+        password = request.json['password']
+        # id = request.json['id']
+        print(name, password)
+
+
+        try:
+            conn = connect()
+            cur = conn.cursor()
+            cur.execute(f'''INSERT INTO public."usersAlfa" (name, password) VALUES ('{name}', '{password}');''')
+            conn.commit()
+            conn.close()
+            return Response('done', status=200)
+        except Exception as error:
+            print(error)
+            return Response('fail', status=404)
+
+@app.route('/user')
+def test3():
+    return render_template('user.html')
+
+@app.route('/table')
+def table():
+    return render_template('table.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

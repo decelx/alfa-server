@@ -1,74 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Main</title>
-</head>
-<body>
-<div class="p-3 mb-2 bg-danger text-white ">Aльфа банк</div>
-    <div class="container">
-        <div class="row">
-            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-              <div class="col-md-3 mb-2 mb-md-0">
-                <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-                  <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-                </a>
-              </div>
-                <div class="col-md-3 text-end">
-                <button type="button" class="btn btn-primary" onclick="window['closeMe'].showModal()" aria-controls="closeMe">Регистрация</button>
-                <dialog open="open" id="closeMe" class="dialog" aria-labelledby="dialog-name">
-                <h3 class="dialog__title" id="dialog-name"> login</h3>
-                <input type="text" id="name1" name="name" required minlength="4" maxlength="8" size="10" />
-                <h3 class="dialog__title" id="dialog-name2"> password </h3>
-                <input type="text" id="name2" name="name" required minlength="4" maxlength="8" size="10" />
-                <form method="dialog">
-                <button class="dialog__button button-blue">Вход</button>
-              </div>
-            </header>
-        </div>
-        <div class="row">
-            <form class="row g-3">
-                <div class="col-2"></div>
-              <div class="col-auto">
-                <label for="inputEmail" class="visually-hidden">Password</label>
-                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-              </div>
-              <div class="col-auto">
-                <label for="inputPassword" class="visually-hidden">Password</label>
-                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-              </div>
-              <div class="col-3">
-                <button type="submit" class="btn btn-primary mb-3" id="btn-login">Войти</button>
-              </div>
-                <div class="col-2"></div>
-            </form>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">-->
+<!--    <title>Main</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="p-3 mb-2 bg-danger text-white ">Aльфа банк</div>-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">-->
+<!--              <div class="col-md-3 mb-2 mb-md-0">-->
+<!--                <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">-->
+<!--                  <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>-->
+<!--                </a>-->
+<!--              </div>-->
+<!--                <div class="col-md-3 text-end">-->
+<!--                <button type="button" class="btn btn-primary" onclick="window['closeMe'].showModal()" aria-controls="closeMe">Регистрация</button>-->
+<!--                <dialog open="open" id="closeMe" class="dialog" aria-labelledby="dialog-name">-->
+<!--                <h3 class="dialog__title" id="dialog-name"> login</h3>-->
+<!--                <input type="text" id="name1" name="name" required minlength="4" maxlength="8" size="10" />-->
+<!--                <h3 class="dialog__title" id="dialog-name2"> password </h3>-->
+<!--                <input type="text" id="name2" name="name" required minlength="4" maxlength="8" size="10" />-->
+<!--                <form method="dialog">-->
+<!--                <button class="dialog__button button-blue">Вход</button>-->
+<!--              </div>-->
+<!--            </header>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <form class="row g-3">-->
+<!--                <div class="col-2"></div>-->
+<!--              <div class="col-auto">-->
+<!--                <label for="inputEmail" class="visually-hidden">Password</label>-->
+<!--                <input type="email" class="form-control" id="inputEmail" placeholder="Email">-->
+<!--              </div>-->
+<!--              <div class="col-auto">-->
+<!--                <label for="inputPassword" class="visually-hidden">Password</label>-->
+<!--                <input type="password" class="form-control" id="inputPassword" placeholder="Password">-->
+<!--              </div>-->
+<!--              <div class="col-3">-->
+<!--                <button type="submit" class="btn btn-primary mb-3" id="btn-login">Войти</button>-->
+<!--              </div>-->
+<!--                <div class="col-2"></div>-->
+<!--            </form>-->
 
-        </div>
-    </div>
-    <div class="modal" tabindex="-1">
-</div>
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="modal" tabindex="-1">-->
+<!--</div>-->
 
-</body>
-<script>
-    $("#btn-login").click(function() {
-        var email = $("#inputEmail").val();
-        var password = $("#inputPassword").val();
-        console.log(email, password);
+<!--</body>-->
+<!--<script>-->
+<!--    $("#btn-login").click(function() {-->
+<!--        var email = $("#inputEmail").val();-->
+<!--        var password = $("#inputPassword").val();-->
+<!--        console.log(email, password);-->
 
-        $.ajax({
-            type: "POST",
-            url: "/check-user-data",
-            contentType: "application/json",
-            data: JSON.stringify({"email": email, "password": password}),
-            success: function () {
-                alert("yes");
-            },
-            error: function () {
-                alert("no");
-            }
-        });
-    })
-</script>
-</html>
+<!--        $.ajax({-->
+<!--            type: "POST",-->
+<!--            url: "/check-user-data",-->
+<!--            contentType: "application/json",-->
+<!--            data: JSON.stringify({"email": email, "password": password}),-->
+<!--            success: function () {-->
+<!--                alert("yes");-->
+<!--            },-->
+<!--            error: function () {-->
+<!--                alert("no");-->
+<!--            }-->
+<!--        });-->
+<!--    })-->
+<!--</script>-->
+<!--</html>-->

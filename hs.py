@@ -7,5 +7,5 @@
 # pas.digest()
 #
 # print(pas.hexdigest())
-print('ada')
+# print('ada')
 # eaa6b901c3c57a2a4a4ac599a877a2283390ce0e716f1bc412963eeb6057d502
