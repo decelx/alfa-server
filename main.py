@@ -8,6 +8,8 @@ from config import load_config
 from flask import Response
 from urllib.parse import urlparse
 from uuid import *
+from gen_name import *
+
 
 # conStr = "localhost://postgres:password@data_quality:5432"
 # p = urlparse(conStr)
@@ -44,24 +46,25 @@ def hello():
 @app.route('/index', methods=['POST'])
 def checkUser():
     if request.method == 'POST':
-        surname = request.json['surname']
-        name = request.json['name']
-        father = request.json['father']
-        docsType = request.json['docsType']
+        # surname = request.json['surname']
+        # name = request.json['name']
+        # father = request.json['father']
+        # docsType = request.json['docsType']
+        for i in range(500):
 
-        id = uuid4()
+            id = uuid4()
 
-        
-        try:
-            conn = connect()
-            cur = conn.cursor()
-            cur.execute(f"INSERT INTO public.reference(surname, name, father, id, docstype) VALUES ('{surname}', '{name}', '{father}', '{id}', '{docsType}');")
-            conn.commit()
-            conn.close()
-            return Response('done', status=200)
-        except Exception as error:
-            print(error)
-            return Response('fail', status=404)
+
+            try:
+                conn = connect()
+                cur = conn.cursor()
+                cur.execute(f"INSERT INTO public.reference(surname, name, father, id) VALUES ('{surname_x()}', '{name_x()}', '{patronymic_x()}', '{id}');")
+                conn.commit()
+                conn.close()
+                return Response('done', status=200)
+            except Exception as error:
+                print(error)
+                return Response('fail', status=404)
 
 
         #
@@ -105,9 +108,9 @@ def checkUserAlfa():
             print(error)
             return Response('fail', status=404)
 
-@app.route('/user')
-def test3():
-    return render_template('user.html')
+@app.route('/calculator')
+def calculator():
+    return render_template('calculator.html')
 
 @app.route('/gen_table', methods = ["POST"])
 def gen_table():
@@ -143,6 +146,10 @@ def gen_table():
 @app.route('/table')
 def table():
     return render_template('table.html')
+
+@app.route('/window')
+def window():
+    return render_template('window.html')
 
 
 

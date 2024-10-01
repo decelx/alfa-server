@@ -60,21 +60,21 @@
         var name = $("#inputName").val();
         var father = $("#inputFather").val();
         var id = $("#inputId").val();
-        var docsType = $("#docsType option:selected").text();
+<!--        var docsType = $("#docsType option:selected").text();-->
 <!--        var password = $("#inputNameded").val();-->
-        console.log(docsType);
+<!--        console.log(docsType);-->
 
         $.ajax({
             type: "POST",
             url: "/index",
             contentType: "application/json",
-            data: JSON.stringify({"surname": surname, "name": name, "father": father, "id": id, "docsType": docsType}),
-            success: function () {
-                alert("yes");
-            },
-            error: function () {
-                alert("no");
-            }
+            data: JSON.stringify({"surname": surname, "name": name, "father": father, "id": id}),
+<!--            success: function () {-->
+<!--                alert("yes");-->
+<!--            },-->
+<!--            error: function () {-->
+<!--                alert("no");-->
+<!--            }-->
         });
     })
 </script>
