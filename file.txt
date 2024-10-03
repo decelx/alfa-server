@@ -1,0 +1,7 @@
+# создать фласк
+в нем обработчик /calculate
+создать файл service.py
+в нем
+    diopazons = {"20-30": 2}
+
+файл инициатор requests, requests.get()
