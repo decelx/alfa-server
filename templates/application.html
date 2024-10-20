@@ -36,20 +36,32 @@
             </select>
          </div>
 
-         <div class="btn-group" role="group" aria-label="Basic example">
-            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off">
-            <label class="btn btn-danger" for="option1">Паспорт</label>
+         <div class="col-10">
+             <div class="row">
+                 <div class="btn-group" role="group" aria-label="Basic example" style="top: 200px;">
+                    <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off">
+                    <label class="btn btn-danger" for="option1">Паспорт</label>
 
-            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-            <label class="btn btn-danger" for="option2">Водительские права</label>
+                    <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+                    <label class="btn btn-danger" for="option2">Водительские права</label>
 
-            <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
-            <label class="btn btn-danger" for="option3">Загран паспорт</label>
+                    <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
+                    <label class="btn btn-danger" for="option3">Загран паспорт</label>
 
-            <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off">
-            <label class="btn btn-danger" for="option4">Вид на жительство</label>
+                    <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off">
+                    <label class="btn btn-danger" for="option4">Вид на жительство</label>
+                </div>
+
+             </div>
         </div>
-         <button id="btn-send">отправить</button>
+         <div style="text-align: center; position:relative; left:700px; top:160px;">
+            <button id="btn-send" class="btn btn-danger btn-lg">отправить</button>
+         </div>
+
+         <button class="btn btn-outline-danger" onclick="location.href='/'" id="btn_back">
+         <img src="https://gb2.infomed39.ru/upload/medialibrary/1ac/27mrkyfe33b4svv2swwhpjtftyosal62/ddb2de16735c7bbf6ad3a6ad748d12e7_w200.gif" style="width: 50px;">
+         </button>
+
 
     </div>
 
@@ -59,7 +71,7 @@
         var surname = $("#inputSurname").val();
         var name = $("#inputName").val();
         var father = $("#inputFather").val();
-        var id = $("#inputId").val();
+<!--        var id = $("#inputId").val();-->
 <!--        var docsType = $("#docsType option:selected").text();-->
 <!--        var password = $("#inputNameded").val();-->
 <!--        console.log(docsType);-->
@@ -68,13 +80,13 @@
             type: "POST",
             url: "/index",
             contentType: "application/json",
-            data: JSON.stringify({"surname": surname, "name": name, "father": father, "id": id}),
-<!--            success: function () {-->
-<!--                alert("yes");-->
-<!--            },-->
-<!--            error: function () {-->
-<!--                alert("no");-->
-<!--            }-->
+            data: JSON.stringify({"surname": surname, "name": name, "father": father}),
+            success: function () {
+                alert("yes");
+            },
+            error: function () {
+                alert("no");
+            }
         });
     })
 </script>
