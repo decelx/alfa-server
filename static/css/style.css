@@ -55,3 +55,17 @@ body {
 }
 
 
+#btn_back {
+    margin-left: 3%;
+    position: absolute;
+    bottom: 3%;
+
+}
+
+
+
+th, tr {
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid black;
+}
