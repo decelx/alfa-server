@@ -9,6 +9,23 @@
 </head>
 <body>
     <div class="container">
+
+        <table class="table table-bordered">
+          <thead class="table-dark">
+            <tr>
+                <th scope="col" style="color: red;">A</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Отчество</th>
+                <th scope="col">Документ</th>
+                <th scope="col">id</th>
+            </tr>
+          </thead>
+          <tbody id="table">
+
+          </tbody>
+        </table>
+
         <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center">
                 <li class="page-item">
@@ -26,33 +43,21 @@
                 </li>
               </ul>
         </nav>
-        <table class="table table-bordered">
-          <thead class="table-dark">
-            <tr>
-                <th scope="col" style="color: red;">A</th>
-                <th scope="col">Фамилия</th>
-                <th scope="col">Имя</th>
-                <th scope="col">Отчество</th>
-                <th scope="col">Документ</th>
-                <th scope="col">id</th>
-            </tr>
-          </thead>
-          <tbody id="table">
 
-          </tbody>
-        </table>
+        <button class="btn btn-outline-danger" onclick="location.href='/'">
+            <img src="https://gb2.infomed39.ru/upload/medialibrary/1ac/27mrkyfe33b4svv2swwhpjtftyosal62/ddb2de16735c7bbf6ad3a6ad748d12e7_w200.gif" style="width: 50px;">
+        </button>
+
     </div>
-    <button class="btn btn-outline-danger" onclick="location.href='/'">
-        <img src="https://gb2.infomed39.ru/upload/medialibrary/1ac/27mrkyfe33b4svv2swwhpjtftyosal62/ddb2de16735c7bbf6ad3a6ad748d12e7_w200.gif" style="width: 50px;">
-    </button>
+
 </body>
     <script>
         $(document).ready(function (){
             $.ajax({
-                type: "GET",
-                url: "/gen_table/1",
+                type: "POST",
+                url: "/gen_table",
                 contentType: "application/json",
-                data: JSON.stringify({"data": "data"}),
+                data: JSON.stringify({"num": 2}),
                 success: function (data) {
                     $("#table").append(data);
                 },

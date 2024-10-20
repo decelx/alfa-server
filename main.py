@@ -37,12 +37,13 @@ def connect():
     return conn
 
 
-def get_20(num):
+def get_20(num=1):
     conn = connect()
     cur = conn.cursor()
     cur.execute(f'''SELECT * FROM public.reference''')
     referenses = cur.fetchall()
     conn.close()
+
 
     count = 0
     answer = []
@@ -142,30 +143,33 @@ def credit_calc():
         calc = Calculator(age, married, job)
         return calc.calculate()
 
-@app.route('/gen_table/<int:num>', methods = ["GET"])
-def gen_table(num):
-    try:
-        referenses = get_20(num)
+@app.route('/gen_table/', methods = ["POST"])
+def gen_table():
+    if request.method == 'POST':
+        num = request.json['num']
 
-        count = 1
-        table_html = ""
-        for ref in referenses:
-            tr = f"""
-                <tr>
-                    <th scope="row">{count}</th>
-                    <td>{ref[0]}</td>
-                    <td>{ref[1]}</td>
-                    <td>{ref[2]}</td>
-                    <td>{ref[3]}</td>
-                    <td><button class="btn btn-danger btn-lg">отправить</button></td>
-                </tr>
-            """
-            table_html += tr
-            count += 1
-        return Response(table_html, status=200)
-    except Exception as error:
-        print(error)
-        return Response('fail', status=404)
+        try:
+            referenses = get_20(num)
+
+            count = 1
+            table_html = ""
+            for ref in referenses:
+                tr = f"""
+                    <tr>
+                        <th scope="row">{count}</th>
+                        <td>{ref[0]}</td>
+                        <td>{ref[1]}</td>
+                        <td>{ref[2]}</td>
+                        <td>{ref[3]}</td>
+                        <td><button class="btn btn-danger btn-lg">отправить</button></td>
+                    </tr>
+                """
+                table_html += tr
+                count += 1
+            return Response(table_html, status=200)
+        except Exception as error:
+            print(error)
+            return Response('fail', status=404)
 
 @app.route('/table')
 def table():
