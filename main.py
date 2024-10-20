@@ -12,6 +12,7 @@ from gen_name import *
 from credit_calc import Calculator
 
 
+
 # conStr = "localhost://postgres:password@data_quality:5432"
 # p = urlparse(conStr)
 #
@@ -30,11 +31,28 @@ config = load_config('postgresql_db')
 
 app = Flask(__name__)
 
+
 def connect():
     conn = psycopg2.connect(**config)
     return conn
 
 
+def get_20(num):
+    conn = connect()
+    cur = conn.cursor()
+    cur.execute(f'''SELECT * FROM public.reference''')
+    referenses = cur.fetchall()
+    conn.close()
+
+    count = 0
+    answer = []
+    for i in referenses:
+        count += 1
+
+        if count >= ((num - 1) * 20) and count <= (num * 20):
+           answer.append(i)
+
+    return answer
 
 
 
@@ -124,16 +142,10 @@ def credit_calc():
         calc = Calculator(age, married, job)
         return calc.calculate()
 
-@app.route('/gen_table', methods = ["POST"])
-def gen_table():
+@app.route('/gen_table/<int:num>', methods = ["GET"])
+def gen_table(num):
     try:
-        conn = connect()
-        cur = conn.cursor()
-        cur.execute("SELECT * FROM public.reference")
-        referenses = cur.fetchall()
-        conn.close()
-
-        print(referenses)
+        referenses = get_20(num)
 
         count = 1
         table_html = ""

@@ -49,8 +49,8 @@
     <script>
         $(document).ready(function (){
             $.ajax({
-                type: "POST",
-                url: "/gen_table",
+                type: "GET",
+                url: "/gen_table/1",
                 contentType: "application/json",
                 data: JSON.stringify({"data": "data"}),
                 success: function (data) {
