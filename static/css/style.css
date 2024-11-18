@@ -1,11 +1,17 @@
-header {
-    background: linear-gradient(#fe8e8e, #fb2020);
-    padding: 5px;
+#header_style {
+    background: linear-gradient(#e80000, #e80000);
+    color: white;
+    text-align: center;
+    padding: 12px;
     border-radius: 10px;
 }
+
+
 .i {
     padding-left: 333px;
 }
+
+
 .butSt {
   background-color: rgba(255, 0, 0, 1);
   color: #fff;
@@ -19,19 +25,21 @@ header {
   width: 80%;
   text-align: middle;
 }
+
+
 .butSt:active {
   box-shadow:
     inset -2px -2px 3px rgba(255, 255, 255, 0.6),
-    inset 2px 2px 3px rgba(0, 0, 0, 0.6);
-
+    inset 2px 2px 3px rgba(0, 0, 0, 0.6)
 }
+
 
 body {
     background-image: url("a.webp");
     background-repeat: no-repeat;
-
     height: 100%;
     width: 100%;
+
 
 .sel {
     position: absolute;
@@ -42,13 +50,6 @@ body {
 
 }
 
-.btn-group {
-    position: absolute;
-    top: 55%;
-    left: 4%;
-    width: 500px;
-
-}
 
 .btn-menu {
     font-size: 25px;
@@ -63,9 +64,55 @@ body {
 }
 
 
-
 th, tr {
     text-align: center;
     vertical-align: middle;
     border: 1px solid black;
 }
+
+.range {
+    text-align: center;
+    height: 80px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 0 65px 0 65px;
+}
+
+.content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+}
+
+
+.value {
+    position: absolute;
+    font-size: 18px;
+    font-width: 600;
+    color: black;
+}
+
+.value.left {
+    left: -20px;
+
+}
+
+.value.right {
+    right: -43px;
+}
+
+.input {
+    -webkit-appearance: none;
+    height: 3px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    width: 100%;
+}
+
+
+

@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
 
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="static/css/style.css">
     <title>Калькулятор</title>
 </head>
 <body>
-    <nav class="navbar bg-danger" data-bs-theme="dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" style="color: white; height: 70px;">
-          <h4>Альфа-банк</h4>
-        </a>
-      </div>
-    </nav>
+    <div class="col hed" id="header_style">
+        <header>
+            <h2>Альфа-банк</h2>
+        </header>
+    </div>
     <div style="margin: 180px;">
         <h1></h1>
     </div>
@@ -25,14 +24,13 @@
         <div class="row">
             <div class="col-1">
             </div>
-            <div class="col-10" style="text-align: center;">
+            <div class="col-10 range" style="text-align: center;">
                 <h4>Выбирите возраст</h4>
-                <form id="my_form">
-                <div class="form-check form-check-inline">
-                    <div class="value left">18</div>
-<!--                    <label for="customRange1" class="form-label">18  <-&ndash;&gt;   60</label>-->
-                    <input type="range" min="18" max="60" value="18" step="1" class="form-range" id="customRange1">
-                    <div class="value right">60</div>
+                <div class="value left">18</div>
+                <input id="rang" name="flexRadioDefault" style="width: 20%;" class="form-range" type="range" min="18" max="60" value="18" step="1">
+                <span id="ran">18</span>
+                <div class="value right">60</div>
+
 <!--                </div>-->
 <!--                <div class="form-check form-check-inline">-->
 <!--                    <input value="30-40" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">-->
@@ -79,17 +77,17 @@
             </div>
 
             <div class="col-10">
-                  <div style="text-align: center;">
+                <div style="text-align: center;">
                     <h4>Работа</h4>
                     <form id="my_form3">
-                    <div class="form-check form-check-inline">
-                        <input value="Работаю" class="form-check-input" type="radio" name="flexRadio" id="flexRadioDefault7">
-                        <label class="form-check-label" for="flexRadioDefault1">Работаю</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input value="Не работаю" class="form-check-input" type="radio" name="flexRadio" id="flexRadioDefault8">
-                        <label class="form-check-label" for="flexRadioDefault1">Не работаю</label>
-                    </div>
+                        <div class="form-check form-check-inline">
+                            <input value="Работаю" class="form-check-input" type="radio" name="flexRadio" id="flexRadioDefault7">
+                            <label class="form-check-label" for="flexRadioDefault1">Работаю</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input value="Не работаю" class="form-check-input" type="radio" name="flexRadio" id="flexRadioDefault8">
+                            <label class="form-check-label" for="flexRadioDefault1">Не работаю</label>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -98,66 +96,51 @@
         </div>
 
         <div style="text-align: center; margin-top: 25px;">
-            <button id="btn-send" class="btn btn-danger btn-menu" style="height: 50px; width: 200px;">Узнать</button>
+            <button id="btn-send" class="btn btn-danger btn-menu" style="height: 50px; width: 200px;  background: #e80000;">Узнать</button>
         </div>
     </div>
-
-    <button class="btn btn-outline-danger" onclick="location.href='/'" id="btn_back">
-        <img src="https://gb2.infomed39.ru/upload/medialibrary/1ac/27mrkyfe33b4svv2swwhpjtftyosal62/ddb2de16735c7bbf6ad3a6ad748d12e7_w200.gif" style="width: 50px;">
-    </button>
-
-
-
-
-<!--    <div style="margin: 50px;">-->
-<!--        <h1></h1>-->
-<!--    </div>-->
-
-
-<!--    <div class="container">-->
-
-<!--    </div>-->
-
-
-<!--    <div style="margin: 50px;">-->
-<!--        <h1></h1>-->
-<!--    </div>-->
-
-<!--    <div class="container">-->
-<!--      -->
-
-
-<!--    <div style="margin: 50px;">-->
-<!--&lt;!&ndash;        <h1></h1>&ndash;&gt;-->
-<!--    </div>-->
+    <div class="">
+        <button class="btn btn-outline-danger" onclick="location.href='/'" id="btn_back">
+            <img src="https://gb2.infomed39.ru/upload/medialibrary/1ac/27mrkyfe33b4svv2swwhpjtftyosal62/ddb2de16735c7bbf6ad3a6ad748d12e7_w200.gif" style="width: 50px;">
+        </button>
+    </div>
 
 </body>
 <script>
-    $("#btn-send").click(function() {
-        var age = $("input[name='flexRadioDefault']:checked").val();
-        var married = $("input[name='RadioDefault']:checked").val();
-        var job = $("input[name='flexRadio']:checked").val();
-        console.log(age, married, job);
 
 
-        $.ajax({
-            type: "POST",
-            url: "/credit_calc",
-            contentType: "application/json",
-            data: JSON.stringify({"age": age, "married": married, "job": job}),
-            success: function (data) {
-                if (data == true) {
-                    alert("yes");
-                };
-                if (data == false) {
-                    alert("no");
-                };
-            },
-            error: function () {
-                alert("no");
-            }
-        });
-    })
+        $(document).ready(function() {
+            $("#btn-send").click(function() {
+                var age = $("#rang").val();
+                var married = $("input[name='RadioDefault']:checked").val();
+                var job = $("input[name='flexRadio']:checked").val();
+                console.log(age, married, job);
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "/credit_calc",
+                    contentType: "application/json",
+                    data: JSON.stringify({"age": age, "married": married, "job": job}),
+                    success: function (data) {
+                        if (data == "True") {
+                            swal("Поздравляю! 😵‍💫", "Кредит одобрен!", "success");
+                        };
+                        if (data == "False") {
+                            swal("Отказано 😔", "Попробуйте сново через 30 дней", "error");
+                        };
+                    },
+                    error: function () {
+                        swal("🤬", "Ошибка сервера", "warning");
+                    }
+                });
+            });
+
+            $("#rang").on("input", function() {
+                var num = $("#rang").val();
+                $("#ran").text(num);
+            });
+        })
 </script>
 </html>
 
@@ -200,4 +183,28 @@
 <!--          <input class="form-check-input" type="radio"  id="inlineRadio8" value="option2">-->
 <!--          <label class="form-check-label" for="inlineRadio2">Не работаю</label>-->
 <!--        </div>-->
+<!--    </div>-->
+
+
+
+<!--    <div style="margin: 50px;">-->
+<!--        <h1></h1>-->
+<!--    </div>-->
+
+
+<!--    <div class="container">-->
+
+<!--    </div>-->
+
+
+<!--    <div style="margin: 50px;">-->
+<!--        <h1></h1>-->
+<!--    </div>-->
+
+<!--    <div class="container">-->
+<!--      -->
+
+
+<!--    <div style="margin: 50px;">-->
+<!--&lt;!&ndash;        <h1></h1>&ndash;&gt;-->
 <!--    </div>-->
