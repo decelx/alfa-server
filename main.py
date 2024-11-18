@@ -12,6 +12,31 @@ from gen_name import *
 from credit_calc import Calculator
 
 
+# numbrs = [1, 55, 3, 13, 560]
+# num = 3
+# for el in numbrs:
+#     if num == el:
+#         print('1')
+#     else:
+#         print('2')
+#
+# numbrs = [1, 55, 3, 13, 560]
+#
+# if (match := num in numbrs):
+#     print('1')
+# else:
+#     print('2')
+# sqers = []
+# for i in range(1, 6):
+#     sqers.append(i ** 2)
+#
+# sqares = [i ** 2 for i in range(1, 6)]
+# count = 0
+# def test():
+#     for i in range(5):
+#         count += i
+#     return count
+
 
 # conStr = "localhost://postgres:password@data_quality:5432"
 # p = urlparse(conStr)
@@ -43,16 +68,16 @@ def get_20(num=1):
     cur.execute(f'''SELECT * FROM public.reference''')
     referenses = cur.fetchall()
     conn.close()
-
+    print(referenses)
 
     count = 0
     answer = []
     for i in referenses:
         count += 1
 
-        if count >= ((num - 1) * 20) and count <= (num * 20):
-           answer.append(i)
-
+        # if count >= ((num - 1) * 20) and count <= (num * 20):
+        answer.append(i)
+        print(answer)
     return answer
 
 
@@ -69,16 +94,19 @@ def checkUser():
         surname_x = request.json['surname']
         name_x = request.json['name']
         father = request.json['father']
+        reference = request.json['reference']
+        id = uuid4()
         # docsType = request.json['docsType']
         # for i in range(500):
         #
-        #     id = uuid4()
+
 
         print("!!!")
         try:
             conn = connect()
             cur = conn.cursor()
-            cur.execute(f'''INSERT INTO public.reference(surname, name, father) VALUES ('{surname_x}', '{name_x}','{father}');''')
+            cur.execute(f'''INSERT INTO public.reference(surname, name, father, reference, id) VALUES ('{surname_x}', '{name_x}','{father}', '{reference}', '{id}');''')
+            print(reference)
             conn.commit()
             conn.close()
             return Response('done', status=200)
@@ -135,13 +163,21 @@ def calculator():
 
 @app.route('/credit_calc', methods = ["POST"])
 def credit_calc():
+    print(request.json)
     if request.method == 'POST':
-        age = request.json['age']
-        married = request.json['married']
-        job = request.json['job']
+        age = int(request.json['age'])
+        if request.json['married'] == 'Женат':
+            married = True
+        else:
+            married = False
+        if request.json['job'] == 'Работаю':
+            job = True
+        else:
+            job = False
 
         calc = Calculator(age, married, job)
-        return calc.calculate()
+        print(calc.calculate())
+        return Response(str(calc.calculate()), status=200)
 
 @app.route('/gen_table/', methods = ["POST"])
 def gen_table():
@@ -150,18 +186,19 @@ def gen_table():
 
         try:
             referenses = get_20(num)
-
+            print(referenses)
             count = 1
             table_html = ""
             for ref in referenses:
                 tr = f"""
                     <tr>
                         <th scope="row">{count}</th>
-                        <td>{ref[0]}</td>
-                        <td>{ref[1]}</td>
-                        <td>{ref[2]}</td>
-                        <td>{ref[3]}</td>
-                        <td><button class="btn btn-danger btn-lg">отправить</button></td>
+                        <td class="surname">{ref[0]}</td>
+                        <td class="name">{ref[1]}</td>
+                        <td class="father">{ref[2]}</td>
+                        <td class="ref">{ref[3]}</td>
+                        <td class="doc">{ref[5]}</td>
+                        <td><button type="button" class="btn btn-danger btn-lg print-btn" data-toggle="modal" data-target="#staticBackdrop" style="background: #e80000;">Печать</button></td>
                     </tr>
                 """
                 table_html += tr
@@ -178,6 +215,10 @@ def table():
 @app.route('/window')
 def window():
     return render_template('window.html')
+
+@app.route('/test')
+def ttest():
+    return render_template('test.html')
 
 
 

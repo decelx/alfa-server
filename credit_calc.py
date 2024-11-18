@@ -36,3 +36,5 @@ class Calculator:
                 return True
             if self.married == True and self.job == False:
                 return False
+        else:
+            return False
