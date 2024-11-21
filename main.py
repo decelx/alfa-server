@@ -95,6 +95,7 @@ def checkUser():
         name_x = request.json['name']
         father = request.json['father']
         reference = request.json['reference']
+        docsType = request.json['docsType']
         id = uuid4()
         # docsType = request.json['docsType']
         # for i in range(500):
@@ -105,7 +106,7 @@ def checkUser():
         try:
             conn = connect()
             cur = conn.cursor()
-            cur.execute(f'''INSERT INTO public.reference(surname, name, father, reference, id) VALUES ('{surname_x}', '{name_x}','{father}', '{reference}', '{id}');''')
+            cur.execute(f'''INSERT INTO public.reference(surname, name, father, reference, id, document) VALUES ('{surname_x}', '{name_x}','{father}', '{reference}', '{id}', '{docsType}');''')
             print(reference)
             conn.commit()
             conn.close()

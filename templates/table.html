@@ -20,8 +20,9 @@
                         <th scope="col">Фамилия</th>
                         <th scope="col">Имя</th>
                         <th scope="col">Отчество</th>
-                        <th scope="col">reference</th>
-                        <th scope="col">id</th>
+                        <th scope="col">Справка</th>
+                        <th scope="col">Документ</th>
+                        <th scope="col">Печать</th>
                     </tr>
                     </thead>
                   <tbody>
@@ -56,21 +57,28 @@
 
 
     <div class="modal" tabindex="-1" id="mymodal">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title">Печать справки</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="x"></button>
           </div>
           <div class="modal-body">
-             <p><span id="modal-surname"></span></p>
-              <p><span id="modal-name"></span></p>
-              <p><span id="modal-father"></span></p>
+              <div class="col-1">
+                  <p align="left"><span id="modal-surname"></span></p>
+              </div>
+              <div class="col-1">
+                  <p align="center"><span id="modal-name"></span></p>
+              </div>
+              <div class="col-1">
+                  <p align="right"><span id="modal-father"></span></p>
+              </div>
               <p><span id="modal-doc"></span></p>
+              <p><span id="modal-ref"></span></p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cl">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cl">Закрыть</button>
+            <button type="button" class="btn btn-primary" value="Print this page" onclick="window.print()">Печать</button>
           </div>
         </div>
       </div>
@@ -116,6 +124,9 @@
             })
 
             $("#cl").on("click", function(){
+                $("#mymodal").modal("hide");
+            })
+            $("#x").on("click", function(){
                 $("#mymodal").modal("hide");
             })
         })

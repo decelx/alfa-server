@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Заведение заявки</title>
@@ -40,7 +41,7 @@
 
         <div class="row">
             <div class="col-12" style="margin: 70px;">
-                <div class="btn-group" role="group" aria-label="Basic example" style="margin-top: 50px;">
+                <div class="btn-group" role="group" aria-label="Basic example" style="margin-top: 50px;" id="docsType">
                     <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off">
                     <label class="btn btn-danger" style="background: #e80000;" for="option1">Паспорт</label>
 
@@ -69,20 +70,20 @@
         var father = $("#inputFather").val();
         var reference = $("#inputReference option:selected").text();
 <!--        var id = $("#inputId").val();-->
-<!--        var docsType = $("#docsType option:selected").text();-->
+        var docsType = $("#docsType option:selected").text();
 <!--        var password = $("#inputNameded").val();-->
-<!--        console.log(docsType);-->
+        console.log(docsType);
 
         $.ajax({
             type: "POST",
             url: "/index",
             contentType: "application/json",
-            data: JSON.stringify({"surname": surname, "name": name, "father": father, "reference": reference}),
+            data: JSON.stringify({"surname": surname, "name": name, "father": father, "reference": reference, "docsType": docsType}),
             success: function () {
-                alert("yes");
+                swal("Альфа-банк 🅰️", "Справка создана", "success");
             },
             error: function () {
-                alert("no");
+                swal("🤬", "Ошибка сервера", "warning");
             }
         });
     })
