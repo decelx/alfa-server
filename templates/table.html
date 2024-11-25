@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-1">
             </div>
-            <div class="con-1">
+            <div class="col-10">
                 <table class="table table-bordered">
                     <thead class="table-dark">
                     <tr>
@@ -60,24 +60,26 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Печать справки</h5>
+            <h5 class="modal-title" id="doched">Печать справки</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="x"></button>
           </div>
           <div class="modal-body">
-              <div class="col-1">
-                  <p align="left"><span id="modal-surname"></span></p>
-              </div>
-              <div class="col-1">
-                  <p align="center"><span id="modal-name"></span></p>
-              </div>
-              <div class="col-1">
-                  <p align="right"><span id="modal-father"></span></p>
+              <div class="row" style="text-align: center;">
+                  <div class="col-3">
+                      <p align="left"><span id="modal-surname"></span></p>
+                  </div>
+                  <div class="col-3">
+                      <p align="center"><span id="modal-name"></span></p>
+                  </div>
+                  <div class="col-3">
+                      <p align="right"><span id="modal-father"></span></p>
+                  </div>
               </div>
               <p><span id="modal-doc"></span></p>
               <p><span id="modal-ref"></span></p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cl">Закрыть</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cl">Удалить</button>
             <button type="button" class="btn btn-primary" value="Print this page" onclick="window.print()">Печать</button>
           </div>
         </div>
@@ -111,6 +113,9 @@
                     var father = row.find(".father").text();
                     var ref = row.find(".ref").text();
                     var doc = row.find(".doc").text();
+
+                    var message = ref;
+                    document.getElementById("doched").innerHTML = message;
 
                     $("#modal-surname").text(surname);
                     $("#modal-name").text(name);

@@ -69,10 +69,8 @@
         var name = $("#inputName").val();
         var father = $("#inputFather").val();
         var reference = $("#inputReference option:selected").text();
-<!--        var id = $("#inputId").val();-->
-        var docsType = $("#docsType option:selected").text();
-<!--        var password = $("#inputNameded").val();-->
-        console.log(docsType);
+        var input_id = $("#docsType input:checked").attr("id");
+        var docsType = $("#docsType label[for='" + input_id + "']").text();
 
         $.ajax({
             type: "POST",

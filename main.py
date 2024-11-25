@@ -68,7 +68,6 @@ def get_20(num=1):
     cur.execute(f'''SELECT * FROM public.reference''')
     referenses = cur.fetchall()
     conn.close()
-    print(referenses)
 
     count = 0
     answer = []
@@ -77,7 +76,6 @@ def get_20(num=1):
 
         # if count >= ((num - 1) * 20) and count <= (num * 20):
         answer.append(i)
-        print(answer)
     return answer
 
 
@@ -187,7 +185,6 @@ def gen_table():
 
         try:
             referenses = get_20(num)
-            print(referenses)
             count = 1
             table_html = ""
             for ref in referenses:
@@ -200,7 +197,7 @@ def gen_table():
                         <td class="ref">{ref[3]}</td>
                         <td class="doc">{ref[5]}</td>
                         <td><button type="button" class="btn btn-danger btn-lg print-btn" data-toggle="modal" data-target="#staticBackdrop" style="background: #e80000;">Печать</button></td>
-                    </tr>
+                    </tr>    
                 """
                 table_html += tr
                 count += 1
@@ -208,6 +205,28 @@ def gen_table():
         except Exception as error:
             print(error)
             return Response('fail', status=404)
+
+@app.route('/del_user', methods = ["POST"])
+def del_user():
+    conn = connect()
+    cur = conn.cursor()
+    cur.execute(f'''SELECT id FROM public.reference''')
+    id = cur.fetchall()
+    table_html = ""
+    for i in id:
+        tr = f"""
+            <tr>
+                <td class="id">{i}</td>
+                <td><button type="button" class="btn btn-danger btn-lg print-btn" data-toggle="modal" data-target="#staticBackdrop" style="background: #e80000;">Удолить</button></td>
+            </tr>
+        """
+        table_html += tr
+        print(table_html)
+    conn.close()
+    return Response(table_html)
+
+print(del_user(), '!!!!!!!!!!!!!!!!!!!!!!!!')
+
 
 @app.route('/table')
 def table():
