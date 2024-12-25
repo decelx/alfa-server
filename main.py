@@ -10,52 +10,21 @@ from urllib.parse import urlparse
 from uuid import *
 from gen_name import *
 from credit_calc import Calculator
+from model import User
+from flask_sqlalchemy import SQLAlchemy
 
 
-# numbrs = [1, 55, 3, 13, 560]
-# num = 3
-# for el in numbrs:
-#     if num == el:
-#         print('1')
-#     else:
-#         print('2')
-#
-# numbrs = [1, 55, 3, 13, 560]
-#
-# if (match := num in numbrs):
-#     print('1')
-# else:
-#     print('2')
-# sqers = []
-# for i in range(1, 6):
-#     sqers.append(i ** 2)
-#
-# sqares = [i ** 2 for i in range(1, 6)]
-# count = 0
-# def test():
-#     for i in range(5):
-#         count += i
-#     return count
-
-
-# conStr = "localhost://postgres:password@data_quality:5432"
-# p = urlparse(conStr)
-#
-# pg_connection_dict = {
-#     'dbname': p.hostname,
-#     'user': p.username,
-#     'password': p.password,
-#     'port': p.port,
-#     'host': p.scheme
-# }
-
-# print(pg_connection_dict)
-# con = psycopg2.connect(**pg_connection_dict)
-# print(con)
 config = load_config('postgresql_db')
 
 app = Flask(__name__)
 
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:decel99@127.0.0.1:5432/postgres"
+
+db = SQLAlchemy()
+db.init_app(app)
+
+with app.app_context():
+    db.create_all()
 
 def connect():
     conn = psycopg2.connect(**config)
@@ -82,7 +51,9 @@ def get_20(num=1):
 
 @app.route('/')
 def hello():
-    config = load_config('postgresql_db')
+    # new_user = User(2, '123', 'acd')
+    # db.session.add(new_user)
+    # db.session.commit()
     return render_template('patternA.html')
 
 
@@ -157,10 +128,14 @@ def checkUserAlfa():
 
 @app.route('/calculator')
 def calculator():
+    user = db.session.get(User, 1)
+    user1 = User(3, '543', '123@mail.ru')
+    db.session.add(user1)
+    db.session.commit()
     return render_template('calculator.html')
 
 
-@app.route('/credit_calc', methods = ["POST"])
+@app.route('/credit_calc', methods=["POST"])
 def credit_calc():
     print(request.json)
     if request.method == 'POST':
