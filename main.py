@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 from flask import Flask, render_template
 from flask import request
 import psycopg2
@@ -10,7 +9,7 @@ from urllib.parse import urlparse
 from uuid import *
 from gen_name import *
 from credit_calc import Calculator
-from model import User
+from model import User, Reference
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -59,6 +58,9 @@ def hello():
 
 @app.route('/index', methods=['POST'])
 def checkUser():
+
+    # return render_template('calculator.html')
+
     if request.method == 'POST':
         surname_x = request.json['surname']
         name_x = request.json['name']
@@ -67,18 +69,23 @@ def checkUser():
         docsType = request.json['docsType']
         id = uuid4()
         # docsType = request.json['docsType']
-        # for i in range(500):
-        #
-
-
-        print("!!!")
+    #     # for i in range(500):
+    #     #
+    #
+    #
+    #     print("!!!")
         try:
-            conn = connect()
-            cur = conn.cursor()
-            cur.execute(f'''INSERT INTO public.reference(surname, name, father, reference, id, document) VALUES ('{surname_x}', '{name_x}','{father}', '{reference}', '{id}', '{docsType}');''')
-            print(reference)
-            conn.commit()
-            conn.close()
+            user1 = Reference(surname_x, name_x, father, reference, id, docsType)
+            db.session.add(user1)
+            db.session.commit()
+            print(user1)
+
+    #         conn = connect()
+    #         cur = conn.cursor()
+    #         cur.execute(f'''INSERT INTO public.reference(surname, name, father, reference, id, document) VALUES ('{surname_x}', '{name_x}','{father}', '{reference}', '{id}', '{docsType}');''')
+    #         print(reference)
+    #         conn.commit()
+    #         conn.close()
             return Response('done', status=200)
         except Exception as error:
             print(error)
@@ -128,10 +135,16 @@ def checkUserAlfa():
 
 @app.route('/calculator')
 def calculator():
-    user = db.session.get(User, 1)
-    user1 = User(3, '543', '123@mail.ru')
-    db.session.add(user1)
-    db.session.commit()
+    # user = db.session.query(User).filter_by(id=2).first()
+    #
+    # if user:
+    #     user.email = "mail@mail.ru"
+    #
+    # print(user.to_dict())
+
+    # user1 = User(5, '634', '2343256@mail.ru')
+    # db.session.add(user1)
+    # db.session.commit()
     return render_template('calculator.html')
 
 
@@ -196,7 +209,7 @@ def del_user():
             </tr>
         """
         table_html += tr
-        print(table_html)
+        # print(table_html)
     conn.close()
     return Response(table_html)
 
