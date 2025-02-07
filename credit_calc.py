@@ -1,4 +1,5 @@
 class Calculator:
+    """Задает условия одобрения кредита"""
     def __init__(self, age, married, job):
         self.age = age
         self.married = married
