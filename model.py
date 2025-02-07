@@ -5,6 +5,7 @@ db = SQLAlchemy()
 
 
 class User(db.Model):
+    """"""
     __tablename__ = "users"
     id = db.Column(db.Integer(), primary_key=True, nullable=False)
     password = db.Column(db.Text())
@@ -40,8 +41,8 @@ class Reference(db.Model):
         self.id = id
         self.document = document
 
-    # def to_dict(self):
-    #     return {
-    #         "email": self.email,
-    #         "password": self.password
-    #     }
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "reference": self.reference
+        }

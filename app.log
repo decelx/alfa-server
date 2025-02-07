@@ -1,0 +1,28 @@
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 876-186-089
+INFO:werkzeug:127.0.0.1 - - [05/Feb/2025 19:55:37] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Feb/2025 19:55:37] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [05/Feb/2025 19:55:37] "[33mGET /static/css/a.webp HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [05/Feb/2025 19:55:38] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Feb/2025 19:55:38] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [05/Feb/2025 19:55:40] "GET /table HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Feb/2025 19:55:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [05/Feb/2025 19:55:41] "[32mPOST /gen_table HTTP/1.1[0m" 308 -
+INFO:werkzeug:127.0.0.1 - - [05/Feb/2025 19:55:41] "POST /gen_table/ HTTP/1.1" 200 -
+INFO:__main__:обращение к БД
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:__main__:обращение к БД
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 876-186-089
+INFO:werkzeug:127.0.0.1 - - [05/Feb/2025 19:58:14] "GET /table HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Feb/2025 19:58:14] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [05/Feb/2025 19:58:14] "[33mGET /static/css/a.webp HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [05/Feb/2025 19:58:14] "[32mPOST /gen_table HTTP/1.1[0m" 308 -
+INFO:werkzeug:127.0.0.1 - - [05/Feb/2025 19:58:14] "POST /gen_table/ HTTP/1.1" 200 -
